@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 1</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-sm-12">
+  <div class="jumbotron bg-dark text-white"><h1>Welcome to my game!</h1></div>
+  <p><strong>Instructions</strong>: <p>Press one of the buttons below to start playing</p>
+  <hr>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-12">
+          <button id="rockbtn" class="btn btn-dark" value="rock" onclick="playRock()">Rock</button>
+          <button id="paperbtn"class="btn btn-dark" value="paper" onclick="playPaper()">Paper</button>
+          <button id="scisbtn" class="btn btn-dark" value="scissor" onclick="playScissor()">Scissors</button>
+          <p id="game" style="margin-top:20px;"></p>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-sm-4">
+          <div class="card bg-success text-white">
+              <div class="card-body">
+                <h2>Wins:</h2>
+              </div>
+            </div>
+        <div class="card">
+          <div class="card-body">
+            <p id="wins"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="card">
+              <div class="card-body bg-danger text-white">
+                <h2>Losses:</h2>
+              </div>
+            </div>
+        <div class="card">
+          <div class="card-body">
+            <p id="losses"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="card">
+              <div class="card-body bg-warning text-white">
+                <h2>Ties:</h2>
+              </div>
+            </div>
+        <div class="card">
+          <div class="card-body">
+            <p id="ties"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row mt-5">
+      <div class="col-sm-12">
+          <div class="card bg-dark text-white">
+              <div class="card-header">
+                Game History
+              </div>
+              <div class="card-header">
+                <p id="win-loss"></p>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p id="history"></p>
+                  <p id="history1"></p>
+                </blockquote>
+              </div>
+            </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <script type="text/javascript">
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+    var compChoices = ["rock", "paper", "scissor"];
+
+
+// Rock Logic 
+    function playRock() {
+      
+      var userGuess = document.getElementById("rockbtn").value;
+
+      var compGuess = compChoices[Math.floor(Math.random() * compChoices.length)];
+      
+      if ((userGuess === "rock") && (compGuess === "paper")) {
+        document.getElementById("win-loss").style.color = "red";
+        document.getElementById("win-loss").innerHTML = "You lost!"
+        losses++
+      } else if ((userGuess === "rock") && (compGuess === "scissor")) {
+        document.getElementById("win-loss").style.color = "green";
+        document.getElementById("win-loss").innerHTML = "You won!"
+        wins++
+      } else {
+        document.getElementById("win-loss").innerHTML = "You tied!"
+        ties++
+      };
+
+     document.getElementById("wins").innerHTML = wins;
+     document.getElementById("losses").innerHTML = losses;
+     document.getElementById("ties").innerHTML = ties;
+     
+
+     var history = 
+     "<p>You Chose: " + userGuess + "</p>" +
+     "<p>Computer Chose: " + compGuess + "</p>"
+
+     document.getElementById("history").innerHTML = history;
+
+    };
+
+// Paper Logic 
+    function playPaper() {
+      
+      var userGuess = document.getElementById("paperbtn").value;
+      
+      var compGuess = compChoices[Math.floor(Math.random() * compChoices.length)];
+      
+      if ((userGuess === "paper") && (compGuess === "scissor")) {
+        document.getElementById("win-loss").style.color = "red";
+        document.getElementById("win-loss").innerHTML = "You lost!"
+        losses++
+      } else if ((userGuess === "paper") && (compGuess === "rock")) {
+        document.getElementById("win-loss").style.color = "green";
+        document.getElementById("win-loss").innerHTML = "You won!"
+        wins++
+      } else {
+        document.getElementById("win-loss").innerHTML = "You tied!"
+        ties++
+      };
+
+     document.getElementById("wins").innerHTML = wins;
+     document.getElementById("losses").innerHTML = losses;
+     document.getElementById("ties").innerHTML = ties;
+
+     var history = 
+     "<p>You Chose: " + userGuess + "</p>" +
+     "<p>Computer Chose: " + compGuess + "</p>"
+
+     document.getElementById("history").innerHTML = history;
+      
+    };
+
+// Scissors Logic
+    function playScissor() {
+      
+      var userGuess = document.getElementById("scisbtn").value;
+      
+      var compGuess = compChoices[Math.floor(Math.random() * compChoices.length)];
+      
+      if ((userGuess === "scissor") && (compGuess === "rock")) {
+        document.getElementById("win-loss").style.color = "red";
+        document.getElementById("win-loss").innerHTML = "You lost!"
+        losses++
+      } else if ((userGuess === "scissor") && (compGuess === "paper")) {
+        document.getElementById("win-loss").style.color = "green";
+        document.getElementById("win-loss").innerHTML = "You won!"
+        wins++
+      } else {
+        document.getElementById("win-loss").innerHTML = "You tied!"
+        ties++
+      };
+
+     document.getElementById("wins").innerHTML = wins;
+     document.getElementById("losses").innerHTML = losses;
+     document.getElementById("ties").innerHTML = ties;
+
+      var history = 
+     "<p>You Chose: " + userGuess + "</p>" +
+     "<p>Computer Chose: " + compGuess + "</p>"
+
+     document.getElementById("history").innerHTML = history;
+     
+    };
+
+     /* var computerChoices = ["r", "p", "s"]
+
+     var wins = 0;
+     var losses = 0;
+     var ties = 0;
+    
+document.onkeyup = function(event) {
+
+    var userGuess = event.key;
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+  if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+    if ((computerGuess === "r" ) && (userGuess === "p" )) {
+        wins++;
+    } else if ((computerGuess === "p") && (userGuess === "r" )){
+        losses++;
+    } else if ((computerGuess === "p") && (userGuess === "s")) {
+      wins++;
+    } else if ((computerGuess === "s") && (userGuess === "p")) {
+      losses++;
+    } else if ((computerGuess === "s") && (userGuess === "r")) {
+      wins++;
+    } else if ((computerGuess === "r") && (userGuess === "s")) {
+      losses++;
+    } else if ((computerGuess === userGuess)) {
+      ties++;
+    } 
+
+    var score = 
+    "<p>You chose: " + userGuess + "</p>" +
+    "<p>Computer chose: " + computerGuess + "</p>" +
+    "<p>Score:</p>" +
+    "Wins: " + wins + "</p>" +
+    "Losses: " + losses + "</p>" +
+    "Ties: " + ties; 
+
+    document.querySelector("#game").innerHTML = score;
+
+}
+}; */
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
